@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Wysłane prywatne wiadomości</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+
+<form th:action="@{/private_messages/}" method="get">
+
+    <button class="btn btn-default" type="submit">Otrzymane wiadomości</button>
+</form>
+
+<br/>Twoje wysłane wiadomości:<br/>
+<div th:each="message : ${sentMessages}">
+    <table class="table table-striped" style="width: 55%; border: solid #e9ecef">
+        <tr>
+            <td style="font-weight:bold">Odbiorca:</td>
+            <td style="font-weight:bold">Data:</td>
+            <td style="font-weight:bold; text-align: center">Przeczytaj całą wiadomość:</td>
+        </tr>
+        <tr>
+
+            <td style="width: 100px">
+                <a th:href="@{'/user/user_profile/'+${message.receiver_name}}" th:text="${message.receiver_name}"/>
+
+            </td>
+
+
+            <td style="width: 150px" th:text="${message.date}"></td>
+
+
+            <td style="width: 100px">
+                <center>
+                    <form th:action="${message.private_message_id}" method="get">
+
+                        <button class="btn btn-default" type="submit">Wejdź</button>
+
+                    </form>
+                </center>
+            </td>
+            <br/>
+        </tr>
+
+        <tr>
+            <th colspan="3" style="width: 50px; text-align: left">Temat:</th>
+        </tr>
+        <tr>
+            <td colspan="3" th:text="${#strings.abbreviate(message.topic,100)}"></td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Wyślij prywatną wiadomość</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div sec:authorize="isAuthenticated()">
+    <form method="POST">
+
+        Temat:<br/><textarea rows="2" cols="40" name="topic"/><br/><br/>
+
+        Treść wiadomości:<br/><textarea rows="15" cols="75" name="content"/><br/><br/>
+
+        <div>
+            <button class="btn btn-default" type="submit">Wyślij wiadomość</button>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Panel Administratora</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div>
+    <a href="/admin/list_all" th:href="@{/admin/list_all}">Wyświetl listę wszystkich użytkowników</a>
+</div>
+<div>
+    <a href="/admin/manage_categories" th:href="@{/admin/manage_categories}">Zarządzaj kategoriami</a>
+</div>
+<div>
+    <a href="/admin/manage_cities" th:href="@{/admin/manage_cities}">Zarządzaj miastami</a>
+</div>
+
+
+</body>
+</html>

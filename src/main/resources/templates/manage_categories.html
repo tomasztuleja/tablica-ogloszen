@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Zarządzanie kategoriami</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div>
+    <form th:action="@{/admin/add_category}" method="POST">
+        <div><label> Nazwa kategorii do dodania : <input type="text" name="category_name"/> </label></div>
+        <div>
+            <button class="btn btn-default" type="submit">Dodaj kategorię</button>
+        </div>
+    </form>
+</div>
+
+<form th:action="@{/admin/delete_category}" method="POST">
+    <select name="category_name" size="1">
+        <option value="">Wybierz kategorię do usunięcia:</option>
+        <option th:each="category : ${categories}" th:value="${category.category_name}"
+                th:text="${category.category_name}"></option>
+    </select>
+    <div>
+        <button class="btn btn-default" type="submit">Usuń kategorię</button>
+    </div>
+
+</form>
+
+</body>
+</html>

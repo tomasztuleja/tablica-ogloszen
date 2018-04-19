@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cała prywatna wiadomość</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<form style="display: inline-flex" th:action="@{/private_messages/}" method="get">
+
+    <button class="btn btn-default" type="submit">Otrzymane wiadomości</button>
+</form>
+
+<form style="display: inline-flex" th:action="@{/private_messages/sent}" method="get">
+
+    <button class="btn btn-default" type="submit">Wysłane wiadomości</button>
+</form>
+
+<table class="table table-striped" style="width: 55%; border: solid #e9ecef">
+    <tr>
+        <td style="font-weight:bold">Nadawca:</td>
+        <td style="font-weight:bold">Data:</td>
+    </tr>
+    <tr>
+        <td style="width: 100px">
+            <a th:href="@{'/user/user_profile/'+${msg.author_name}}" th:text="${msg.author_name}"/>
+
+        </td>
+
+
+        <td style="width: 150px" th:text="${msg.date}"></td>
+
+
+        <br/>
+    </tr>
+
+    <tr>
+        <th colspan="2" style="width: 50px; text-align: left">Temat:</th>
+    </tr>
+    <tr>
+        <td colspan="2" th:text="${msg.topic}"></td>
+    </tr>
+
+    <tr>
+    <tr>
+        <th colspan="2" style="width: 50px; text-align: left">Treść wiadomości:</th>
+    </tr>
+    <td colspan="2" th:text="${msg.content}"></td>
+
+    </tr>
+</table>
+
+
+</body>
+</html>

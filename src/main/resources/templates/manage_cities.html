@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Zarządzanie miastami</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div>
+    <form th:action="@{/admin/add_city}" method="POST">
+        <div><label> Nazwa miasta do dodania : <input type="text" name="city_name"/> </label></div>
+        <div>
+            <button class="btn btn-default" type="submit">Dodaj miasto</button>
+        </div>
+    </form>
+</div>
+
+<form th:action="@{/admin/delete_city}" method="POST">
+    <select name="city_name" size="1">
+        <option value="">Wybierz miasto do usunięcia:</option>
+        <option th:each="city : ${cities}" th:value="${city.city_name}" th:text="${city.city_name}"></option>
+    </select>
+    <div>
+        <button class="btn btn-default" type="submit">Usuń miasto</button>
+    </div>
+
+</form>
+
+</body>
+</html>

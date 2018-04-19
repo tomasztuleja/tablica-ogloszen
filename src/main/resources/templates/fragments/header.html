@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="header">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"></link>
+
+
+    <hr class="hr-primary"/>
+    <ol class="breadcrumb bread-primary ">
+        <a th:href="@{/}">
+            <button class="btn btn-primary">Strona główna</button></a>
+
+        <a sec:authorize="isAuthenticated()" th:href="@{/user/my_profile}">
+            <button class="btn btn-primary">Mój profil</button></a>
+
+        <a sec:authorize="isAnonymous()" th:href="@{/user/login}">
+            <button class="btn btn-primary">Zaloguj</button></a>
+
+        <a sec:authorize="isAnonymous()" th:href="@{/user/register}">
+            <button class="btn btn-primary">Zarejestruj</button></a>
+
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/}">
+            <button class="btn btn-primary">Panel administratora</button></a>
+
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}">
+            <button class="btn btn-primary">Wyloguj</button></a>
+
+        <div sec:authorize="isAuthenticated()" th:inline="text" style="float:right; margin-right: 5px">
+            Zalogowany jako: [[${#httpServletRequest.remoteUser}]]
+        </div>
+
+    </ol>
+
+
+</div>
+</body>
+</html>
